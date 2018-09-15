@@ -24,7 +24,7 @@ repositories {
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.liteloader'
+apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 
 ext.configFile = file "build.properties"
@@ -35,8 +35,12 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
+version = config.mod_version
+group = config.group + "." + config.mod_id
+archivesBaseName = config.mod_id + '-' + config.minecraft_version
+
 minecraft {
-    version = config.minecraft_version
+    version = "${config.minecraft_version}-${config.forge_version}";
     mappings = config.mappings_version
     runDir = 'minecraft'
     makeObfSourceJar = false
@@ -52,7 +56,8 @@ minecraft {
 }
 
 dependencies {
-    deobfCompile "fi.dy.masa.malilib:malilib-" + config.minecraft_version_out + ":" + config.malilib_version + ":deobf"
+    //lol hacks
+    deobfCompile "fi.dy.masa.malilib:malilib-" +"1.12.0" + ":" + config.malilib_version + ":deobf"
 }
 
 sourceSets {
@@ -61,13 +66,8 @@ sourceSets {
     }
 }
 
-group = config.group + "." + config.mod_id // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = config.mod_id + '-' + config.minecraft_version_out
-version = project.minecraft.mod_version
-
 /**
  * This section allows you to customise the generated litemod.json file
- */
 litemod {
     json {
         name = config.mod_id
@@ -83,38 +83,13 @@ litemod {
         mixinConfigs = [ 'mixins.' + config.mod_id + '.json' ]
     }
 }
-
-/**
- * This section allows you to customise your generated jar (litemod) file. By
- * default it includes the generated litemod.json file, however if you prefer to
- * include your own file from resources, simply remove the line below.
  */
-jar {
-    // Remove the "-mc1.12" suffix from the file name
-    classifier = ""
-    // Don't append a 'mod-' filename prefix >_>
-    baseName = archivesBaseName
-
-    from litemod.outputs
-
-    /*
-    manifest.mainAttributes (
-        'Built-By': System.properties['user.name'],
-        'Created-By': System.properties['java.vm.version'] + " (" + System.properties['java.vm.vendor'] + ")",
-        'Implementation-Title': config.mod_id,
-        'Implementation-Version': project.version
-    )
-    */
-}
 
 mixin {
     defaultObfuscationEnv notch
 }
 
-//tasks.withType(Jar)*.baseName = archivesBaseName
-
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "mod_version", project.minecraft.mod_version
     inputs.property "minecraft_version", project.config.minecraft_version

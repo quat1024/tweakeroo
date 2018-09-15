@@ -1,13 +1,16 @@
-Tweakeroo
+Forgearoo
 ==============
-Tweakeroo is a client-side-only Minecraft mod using LiteLoader.
-It adds a selection of miscellaneous, configurable, client-side tweaks to the game.
-Some examples of these are the "flexible block placement" tweak and the "fast block placement" tweak.
-For more information and the downloads (compiled builds), see http://minecraft.curseforge.com/projects/tweakeroo
+
+Hi this is a terrible misguided attempt at porting masa's excellent Tweakeroo to Forge, since I like Forge and its bits and bobs, and I don't like LiteLoader and its bits and bobs.
+
+Currently it does nothing and errors everywhere when you try to build it.
+
+For more information and the downloads (compiled builds), go fuck yourself! For now.
 
 Compiling
 =========
 * Clone the repository
 * Open a command prompt/terminal to the repository directory
 * run 'gradlew build'
-* The built jar file will be in build/libs/
+* Have it error on you
+* Cry

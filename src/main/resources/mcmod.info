@@ -1,13 +1,13 @@
 [
     {
-        "modid": "tweakeroo",
-        "name": "Tweakeroo",
-        "description": "Adds a bunch of configurable client-side tweaks",
+        "modid": "forgearoo",
+        "name": "Forgearoo",
+        "description": "Unofficial Tweakeroo port for Forge",
         "version": "${mod_version}",
         "mcversion": "${minecraft_version}",
-        "url": "http://minecraft.curseforge.com/projects/tweakeroo",
+        "url": "",
         "updateUrl": "",
-        "authorList": ["masa"],
+        "authorList": ["masa", "quaternary"],
         "credits": "",
         "logoFile": "",
         "screenshots": [],

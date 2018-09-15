@@ -6,3 +6,9 @@ eclipse/
 .classpath
 .project
 build.number
+
+*.iml
+*.ipr
+*.iws
+minecraft/
+idea/
